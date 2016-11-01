@@ -156,6 +156,11 @@ class Editor extends React.Component {
         role="main"
         className={editorSectionClass}
       >
+
+        <div className="editor__file-name">
+          {this.props.file.name}
+          {this.props.unsavedChanges ? '*' : null}
+        </div>
         <button
           className="editor__options-button"
           aria-label="editor options"
@@ -212,6 +217,7 @@ Editor.propTypes = {
   autorefresh: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   theme: PropTypes.string.isRequired,
+  unsavedChanges: PropTypes.bool.isRequired
 };
 
 export default Editor;
