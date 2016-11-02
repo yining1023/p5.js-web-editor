@@ -28,6 +28,7 @@ const downArrowUrl = require('../../../images/down-arrow.svg');
 import classNames from 'classnames';
 
 import { debounce } from 'lodash';
+import moment from 'moment';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -158,8 +159,9 @@ class Editor extends React.Component {
       >
 
         <div className="editor__file-name">
-          {this.props.file.name}
-          {this.props.unsavedChanges ? '*' : null}
+          <span>{this.props.file.name}
+          {this.props.unsavedChanges ? '*' : null}</span>
+          <span className="editor__file-name editor__save-time">{this.props.projectSavedTime !== '' ? `Saved: ${moment(this.props.projectSavedTime).fromNow()}` : null}</span>
         </div>
         <button
           className="editor__options-button"
@@ -217,7 +219,8 @@ Editor.propTypes = {
   autorefresh: PropTypes.bool.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   theme: PropTypes.string.isRequired,
-  unsavedChanges: PropTypes.bool.isRequired
+  unsavedChanges: PropTypes.bool.isRequired,
+  projectSavedTime: PropTypes.string.isRequired
 };
 
 export default Editor;

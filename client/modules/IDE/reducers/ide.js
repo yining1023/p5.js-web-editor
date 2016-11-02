@@ -14,6 +14,7 @@ const initialState = {
   editorOptionsVisible: false,
   keyboardShortcutVisible: false,
   unsavedChanges: false,
+  projectSavedTime: '',
   infiniteLoop: false,
   previewIsRefreshing: false,
   infiniteLoopMessage: ''
@@ -71,6 +72,8 @@ const ide = (state = initialState, action) => {
       return Object.assign({}, state, { keyboardShortcutVisible: false });
     case ActionTypes.SET_UNSAVED_CHANGES:
       return Object.assign({}, state, { unsavedChanges: action.value });
+    case ActionTypes.GET_PROJECT_SAVED_TIME:
+      return Object.assign({}, state, { projectSavedTime: action.value });
     case ActionTypes.DETECT_INFINITE_LOOPS:
       return Object.assign({}, state, { infiniteLoop: true, infiniteLoopMessage: action.message });
     case ActionTypes.RESET_INFINITE_LOOPS:

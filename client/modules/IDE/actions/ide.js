@@ -183,6 +183,13 @@ export function setUnsavedChanges(value) {
   };
 }
 
+export function getProjectSavedTime(value) {
+  return {
+    type: ActionTypes.GET_PROJECT_SAVED_TIME,
+    value
+  };
+}
+
 export function detectInfiniteLoops(message) {
   return {
     type: ActionTypes.DETECT_INFINITE_LOOPS,
