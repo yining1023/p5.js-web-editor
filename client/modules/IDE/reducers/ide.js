@@ -72,8 +72,10 @@ const ide = (state = initialState, action) => {
       return Object.assign({}, state, { keyboardShortcutVisible: false });
     case ActionTypes.SET_UNSAVED_CHANGES:
       return Object.assign({}, state, { unsavedChanges: action.value });
-    case ActionTypes.GET_PROJECT_SAVED_TIME:
+    case ActionTypes.SET_PROJECT_SAVED_TIME:
       return Object.assign({}, state, { projectSavedTime: action.value });
+    case ActionTypes.RESET_PROJECT_SAVED_TIME:
+      return Object.assign({}, state, { projectSavedTime: '' });
     case ActionTypes.DETECT_INFINITE_LOOPS:
       return Object.assign({}, state, { infiniteLoop: true, infiniteLoopMessage: action.message });
     case ActionTypes.RESET_INFINITE_LOOPS:

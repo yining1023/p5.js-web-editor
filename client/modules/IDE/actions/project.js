@@ -5,13 +5,14 @@ import JSZip from 'jszip';
 import JSZipUtils from 'jszip-utils';
 import { saveAs } from 'file-saver';
 import { showToast, setToastText } from './toast';
-import { setUnsavedChanges, getProjectSavedTime } from './ide';
+import { setUnsavedChanges, setProjectSavedTime, resetProjectSavedTime } from './ide';
 import moment from 'moment';
 
 const ROOT_URL = location.href.indexOf('localhost') > 0 ? 'http://localhost:8000/api' : '/api';
 
 export function getProject(id) {
   return (dispatch) => {
+    dispatch(resetProjectSavedTime());
     axios.get(`${ROOT_URL}/projects/${id}`, { withCredentials: true })
       .then(response => {
         // browserHistory.push(`/projects/${id}`);
@@ -49,7 +50,7 @@ export function saveProject(autosave = false) {
       axios.put(`${ROOT_URL}/projects/${state.project.id}`, formParams, { withCredentials: true })
         .then(() => {
           dispatch(setUnsavedChanges(false));
-          dispatch(getProjectSavedTime(moment().format()));
+          dispatch(setProjectSavedTime(moment().format()));
           dispatch({
             type: ActionTypes.PROJECT_SAVE_SUCCESS
           });
@@ -66,7 +67,6 @@ export function saveProject(autosave = false) {
       axios.post(`${ROOT_URL}/projects`, formParams, { withCredentials: true })
         .then(response => {
           dispatch(setUnsavedChanges(false));
-          dispatch(getProjectSavedTime(moment().format()));
           browserHistory.push(`/projects/${response.data.id}`);
           dispatch({
             type: ActionTypes.NEW_PROJECT,
@@ -84,6 +84,7 @@ export function saveProject(autosave = false) {
           type: ActionTypes.PROJECT_SAVE_FAIL,
           error: response.data
         }));
+      dispatch(setProjectSavedTime(moment().format()));
     }
   };
 }

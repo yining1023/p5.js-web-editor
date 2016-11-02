@@ -183,10 +183,16 @@ export function setUnsavedChanges(value) {
   };
 }
 
-export function getProjectSavedTime(value) {
+export function setProjectSavedTime(value) {
   return {
-    type: ActionTypes.GET_PROJECT_SAVED_TIME,
+    type: ActionTypes.SET_PROJECT_SAVED_TIME,
     value
+  };
+}
+
+export function resetProjectSavedTime() {
+  return {
+    type: ActionTypes.RESET_PROJECT_SAVED_TIME,
   };
 }
 
