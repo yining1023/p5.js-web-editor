@@ -133,6 +133,11 @@ function Nav(props) {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/account">
+                    My account
+                  </Link>
+                </li>
+                <li>
                   <a onClick={props.logoutUser} >
                     Log out
                   </a>
