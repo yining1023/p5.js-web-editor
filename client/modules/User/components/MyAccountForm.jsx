@@ -27,7 +27,18 @@ function LoginForm(props) {
         {email.touched && email.error && <span className="form-error">{email.error}</span>}
       </p>
       <p className="form__field">
-        <label htmlFor="password" className="form__label">Password</label>
+        <label htmlFor="password" className="form__label">New Password</label>
+        <input
+          className="form__input"
+          aria-label="password"
+          type="password"
+          id="password"
+          {...domOnlyProps(password)}
+        />
+        {password.touched && password.error && <span className="form-error">{password.error}</span>}
+      </p>
+      <p className="form__field">
+        <label htmlFor="password" className="form__label">Confirm New Password</label>
         <input
           className="form__input"
           aria-label="password"
